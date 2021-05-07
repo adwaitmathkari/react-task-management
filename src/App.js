@@ -25,6 +25,7 @@ function App() {
       id: 5, description: 'task 5', day: date, reminder: false
     },
   ])
+  const [showAddTask, setShowAddTask] = useState(false)
 
   const deleteTask = (id) => {
     console.log('delete', id)
@@ -50,12 +51,16 @@ function App() {
     setTasks([...tasks, newTask])
   }
 
+  const toggleAddTask = () => {
+    setShowAddTask(!showAddTask)
+  }
+
   
   return (
     <div className="container">
       <h1>Hello World!! (from react) </h1>
-      <Header title="myApplication" />
-      <AddTask addNewTask={addTask}/>
+      <Header toggleAddTask={toggleAddTask} showAddTask={showAddTask}/>
+      {showAddTask && < AddTask addNewTask={addTask}/>}
       <Tasks tasks={tasks} onDelete={deleteTask} toggleReminder={toggleReminder} />
     </div>
   );
