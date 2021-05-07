@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 // import './App.css';
 import { useState } from 'react'
+import AddTask from './components/AddTask';
 import Header from './components/Header';
 import Tasks from './components/Tasks'
 
@@ -36,12 +37,26 @@ function App() {
       return task.id === id? {...task, reminder:!task.reminder}: task
     }))
   }
+
+  const addTask = (task) => {
+    console.log('adding task')
+    let id;
+    if(tasks.length===0) {
+      id = 1
+    } else{
+      id = tasks[tasks.length-1].id + 1
+    }
+    const newTask = {id, description:task.text, reminder:task.reminder, day:task.day}
+    setTasks([...tasks, newTask])
+  }
+
   
   return (
     <div className="container">
       <h1>Hello World!! (from react) </h1>
       <Header title="myApplication" />
-      <Tasks tasks={tasks} onDelete={deleteTask} toggleReminder={toggleReminder}/>
+      <AddTask addNewTask={addTask}/>
+      <Tasks tasks={tasks} onDelete={deleteTask} toggleReminder={toggleReminder} />
     </div>
   );
 }
