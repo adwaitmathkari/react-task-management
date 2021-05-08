@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 
 const AddTask = ({ addNewTask }) => {
-    const [newTask, setNewTask] = useState({ text: '', day: '', reminder: false })
+    const [newTask, setNewTask] = useState({ text: '', day: 'Day:', reminder: false })
     // const [text, setText] = useState('')
     const onSubmit = (e) => {
         e.preventDefault()
@@ -16,7 +16,7 @@ const AddTask = ({ addNewTask }) => {
 
         addNewTask(newTask)
 
-        setNewTask({ text: '', day: '', reminder: false })
+        setNewTask({ text: '', day: 'Day:', reminder: false })
     }
 
     return (
